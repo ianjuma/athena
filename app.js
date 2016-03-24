@@ -46,42 +46,58 @@ app.post('/receiveSms', function(req, res) {
 
 
 app.post('/wired-ussd', new AfricasTalking.USSD((params, next) => {
-	var sessionId = req.body.sessionId;
-	var serviceCode = req.body.serviceCode;
-	var phoneNumber = req.body.phoneNumber;
-	var text = req.body.text;
+    var endSession = false;
+    var message = '';
 
-	console.log(sessionId, serviceCode, phoneNumber, text);
-	var response = '';
+	var sessionId = params.sessionId;
+	var serviceCode = params.serviceCode;
+	var phoneNumber = params.phoneNumber;
 
-	if (text == '') {
-		response = "Welcome to Wired Networks Ltd \n";
-		response += "1: To enter new device \n";
-		response += "2: To enter sales person\n";
-        response += "3: To check status of mobile device\n";
-		response += "4: To Mark device as sold";
+    console.log(sessionId, serviceCode, phoneNumber, params.text);
+
+	var message = '';
+
+	if (params.text == '') {
+		message = "Welcome to Wired Networks Ltd \n";
+		message += "1: To enter new device \n";
+		message += "2: To enter sales person\n";
+        message += "3: To check status of mobile device\n";
+		message += "4: To Mark device as sold";
 	}
 
-    else if (text == '1') {
-		response = "";
+    else if (params.text == '1') {
+		message = "Enter device IMEI number";
 	}
 
-	else if (text == '2') {
-		response = "CON Enter 1 for recovery \n";
-		response += "Enter 2 for lost and found";
+	else if (params.text == '2') {
+		message = "Enter 1 for recovery \n";
+		message += "Enter 2 for lost and found";
 	}
 
-	else if (text == '2*1') {
-		response += "END I don't care";
+	else if (params.text == '2*1') {
+		message += "I don't care";
+        endSession = true;
 	}
 
-	else if ( text== '2*2') {
-		response += "END: lost found section";
+	else if (params.text== '2*2') {
+		message += "lost found section";
+        endSession = true;
 	}
 
-	if (text == '3') {
-		response = "END Your balance is 2,000 KES";
+	else if (params.text == '3') {
+		message = "Your balance is 2,000 KES";
+        endSession = true;
 	}
+
+    else if (params.text == '4') {
+        message = "Mark device sold";
+        endSession = true;
+    }
+
+    else {
+        message = "Wrong input";
+        endSession = true;
+    }
 
 	next({
         response: response,
