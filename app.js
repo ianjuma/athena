@@ -51,7 +51,7 @@ app.post('/wired-ussd', new AfricasTalking.USSD((params, next) => {
     var endSession = false;
     var message = '';
 
-	var sessionId = params.sessionId;
+	var sessionId = params.session;
 	var serviceCode = params.serviceCode;
 	var phoneNumber = params.phoneNumber;
 
