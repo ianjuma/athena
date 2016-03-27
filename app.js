@@ -1,3 +1,5 @@
+'use strict';
+
 var express    = require('express');
 
 var app        = express();
@@ -55,52 +57,50 @@ app.post('/wired-ussd', new AfricasTalking.USSD((params, next) => {
 
     console.log(sessionId, serviceCode, phoneNumber, params.text);
 
-	var message = '';
-
-	if (params.text == '') {
-		message = "Welcome to Wired Networks Ltd \n";
-		message += "1: To enter new device \n";
-		message += "2: To enter sales person\n";
-        message += "3: To check status of mobile device\n";
-		message += "4: To Mark device as sold";
+	if (params.text === '') {
+		message = 'Welcome to Wired Networks Ltd \n';
+		message += '1: To enter new device \n';
+		message += '2: To enter sales person\n';
+        message += '3: To check status of mobile device\n';
+		message += '4: To Mark device as sold';
 	}
 
-    else if (params.text == '1') {
-		message = "Enter device IMEI number";
+    else if (params.text === '1') {
+		message = 'Enter device IMEI number';
 	}
 
-	else if (params.text == '2') {
-		message = "Enter 1 for recovery \n";
-		message += "Enter 2 for lost and found";
+	else if (params.text === '2') {
+		message = 'Enter 1 for recovery \n';
+		message += 'Enter 2 for lost and found';
 	}
 
-	else if (params.text == '2*1') {
-		message += "I don't care";
+	else if (params.text === '2*1') {
+		message += 'I don\'t care';
         endSession = true;
 	}
 
-	else if (params.text== '2*2') {
-		message += "lost found section";
+	else if (params.text === '2*2') {
+		message += 'lost found section';
         endSession = true;
 	}
 
-	else if (params.text == '3') {
-		message = "Your balance is 2,000 KES";
+	else if (params.text === '3') {
+		message = 'Your balance is 2,000 KES';
         endSession = true;
 	}
 
-    else if (params.text == '4') {
-        message = "Mark device sold";
+    else if (params.text === '4') {
+        message = 'Mark device sold';
         endSession = true;
     }
 
     else {
-        message = "Wrong input";
+        message = 'Wrong input';
         endSession = true;
     }
 
 	next({
-        response: response,
+        response: message,
         endSession: endSession
     });
 }));
