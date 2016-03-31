@@ -40,13 +40,20 @@ exports.wiredUssd = function(req, res) {
     }
 
 	else if (text === '2') {
-		message = 'CON Enter 1 for recovery \n';
-		message += 'Enter 2 for lost and found';
+		message = 'CON Enter agent name\n';
 	}
 
-	else if (text === '2*1') {
-	    message = 'END Enter your name';
+	else if (length === '2' && txt[0] === '2') {
+	    message = 'CON Enter your name';
 	}
+
+    else if (length === '2' && txt[0] === '2') {
+        message = 'CON ID number';
+    }
+
+    else if (length === '2' && txt[0] === '2') {
+        message = 'END Sales agent added';
+    }
 
 	else if (text === '2*2') {
 		message += 'END lost found section';
