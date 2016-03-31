@@ -17,19 +17,17 @@ exports.wiredUssd = function(req, res) {
 
 	if (text === '') {
 		message = 'CON Welcome to Wired Networks Ltd \n';
-		message += '1: To enter new device \n';
-		message += '2: To enter sales person\n';
-	    message += '3: To check status of mobile device\n';
-		message += '4: To Mark device as sold';
+		message += '1: Enter new device \n';
+		message += '2: Enter sales person\n';
+	    message += '3: Check status of mobile device\n';
+		message += '4: Mark device as sold';
 	}
 
 	else if (text === '1') {
 		message = 'CON Enter device IMEI number';
-        console.log(txt[0]);
 	}
     else if (length === 2 && txt[0] === '1') {
         message = 'CON Enter device color';
-        console.log(txt[0]);
     }
     else if (length === 3 && txt[0] === '1') {
         message = 'CON Enter device model';
@@ -39,35 +37,33 @@ exports.wiredUssd = function(req, res) {
         message = 'END Device registered';
     }
 
+
 	else if (text === '2') {
 		message = 'CON Enter agent name\n';
 	}
-
 	else if (length === 2 && txt[0] === '2') {
-	    message = 'CON Enter your name';
+	    message = 'CON Enter agent email';
 	}
-
     else if (length === 3 && txt[0] === '2') {
-        message = 'CON ID number';
+        message = 'CON Enter agent ID number';
     }
-
     else if (length === 4 && txt[0] === '2') {
         message = 'END Sales agent added';
     }
 
+
 	else if (text === '3') {
-		message = 'CON Enter device EMEI number';
+		message = 'CON Enter device IMEI number';
 	}
-
     else if (length === 2 && txt[0] === '3') {
-        message = 'CON Enter device ID';
+        message = 'CON Enter your ID number';
     }
-
     else if (length === 3 && txt[0] === '3') {
-        message = 'END you have a valid device';
+        message = 'END You have a genuine device';
     }
 
-	else if (text === '4') {
+	
+    else if (text === '4') {
 	  message = 'END Mark device sold';
 	}
 
