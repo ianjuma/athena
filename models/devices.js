@@ -2,25 +2,30 @@
 
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-      host     : 'localhost',
-      user     : 'root',
-      password : 'root'
+  host     : 'localhost',
+  user     : 'root',
+  password : 'root'
 });
 
 var pool  = mysql.createPool({
-      host     : 'localhost',
-      user     : 'root',
-      password : 'root'
+  host     : 'localhost',
+  user     : 'root',
+  password : 'root'
 });
 
-var DEVICE_INSERT = "INSERT INTO Devices (id, imei, model) VALUES(?, ?, ?)";
+var DEVICE_INSERT = 'INSERT INTO Devices (imei, model, color) VALUES(?, ?, ?)';
 
-exports.addDevice = function(device) {
+exports.addDevice = function(imei, model, color) {
     connection.query({
       sql: DEVICE_INSERT,
       timeout: 40000,
-      values: ['', '', '']
-    }, function(error, results, fields) {
-      // do shit
+      values: [imei, model, color]
+    }, function(error, result) {
+      if (error) {
+          console.log(error);
+      }
+
+      console.log('changed ' + result.changedRows + ' rows');
+
     });
 };
