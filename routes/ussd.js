@@ -14,40 +14,40 @@ exports.wiredUssd = function(req, res) {
   text.split('*');
 
 	if (text === '') {
-		message = 'Welcome to Wired Networks Ltd \n';
+		message = 'CON Welcome to Wired Networks Ltd \n';
 		message += '1: To enter new device \n';
 		message += '2: To enter sales person\n';
 	    message += '3: To check status of mobile device\n';
-		message += '4: To Mark device as sold CON';
+		message += '4: To Mark device as sold';
 	}
 
 	else if (text === '1') {
-		message = 'Enter device IMEI number CON';
+		message = 'CON Enter device IMEI number';
 	}
 
 	else if (text === '2') {
-		message = 'Enter 1 for recovery \n';
-		message += 'Enter 2 for lost and found CON';
+		message = 'CON Enter 1 for recovery \n';
+		message += 'Enter 2 for lost and found';
 	}
 
 	else if (text === '2*1') {
-	    message = 'Enter your name END';
+	    message = 'END Enter your name';
 	}
 
 	else if (text === '2*2') {
-		message += 'lost found section END';
+		message += 'END lost found section';
 	}
 
 	else if (text === '3') {
-		message = 'Your balance is 2,000 KES END';
+		message = 'END Your balance is 2,000 KES';
 	}
 
 	else if (text === '4') {
-	  message = 'Mark device sold END';
+	  message = 'END Mark device sold';
 	}
 
 	else {
-	  message = 'Wrong input END';
+	  message = 'Wrong input';
 	}
 
 	res.contentType('text/plain');
