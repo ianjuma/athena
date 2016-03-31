@@ -13,7 +13,6 @@ exports.wiredUssd = function(req, res) {
 
   var length = text.split('*').length;
   var txt = text.split('*');
-  console.log(txt[0]);
 
 	if (text === '') {
 		message = 'CON Welcome to Wired Networks Ltd \n';
@@ -33,6 +32,18 @@ exports.wiredUssd = function(req, res) {
         message = 'CON Enter device model';
     }
     else if (length === 4 && txt[0] === '1') {
+        message = 'CON Enter Warranty status\n';
+        message += 'Yes/No';
+    }
+    else if (length === 5 && txt[0] === '1') {
+        message = 'CON Enter Insurance status\n';
+        message += 'Yes/No';
+    }
+    else if (length === 6 && txt[0] === '1') {
+        message = 'CON Is device in stock\n';
+        message += 'Yes/No';
+    }
+    else if (length === 7 && txt[0] === '1') {
         // persist
         message = 'END Device registered';
     }
