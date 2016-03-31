@@ -1,9 +1,5 @@
 'use strict';
 
-var options = require('../config/config');
-var AfricasTalking = require('africastalking')(options.AT);
-
-
 exports.wiredUssd = function(req, res) {
 
   var message = '';
@@ -15,38 +11,38 @@ exports.wiredUssd = function(req, res) {
 
   console.log(sessionId, serviceCode, phoneNumber, text);
 
-  params.text.split('*');
+  text.split('*');
 
-	if (params.text === '') {
+	if (text === '') {
 		message = 'Welcome to Wired Networks Ltd \n';
 		message += '1: To enter new device \n';
 		message += '2: To enter sales person\n';
-	  message += '3: To check status of mobile device\n';
+	    message += '3: To check status of mobile device\n';
 		message += '4: To Mark device as sold CON';
 	}
 
-	else if (params.text === '1') {
+	else if (text === '1') {
 		message = 'Enter device IMEI number CON';
 	}
 
-	else if (params.text === '2') {
+	else if (text === '2') {
 		message = 'Enter 1 for recovery \n';
 		message += 'Enter 2 for lost and found CON';
 	}
 
-	else if (params.text === '2*1') {
-	  message = "Enter your name END";
+	else if (text === '2*1') {
+	    message = 'Enter your name END';
 	}
 
-	else if (params.text === '2*2') {
+	else if (text === '2*2') {
 		message += 'lost found section END';
 	}
 
-	else if (params.text === '3') {
+	else if (text === '3') {
 		message = 'Your balance is 2,000 KES END';
 	}
 
-	else if (params.text === '4') {
+	else if (text === '4') {
 	  message = 'Mark device sold END';
 	}
 
@@ -54,6 +50,6 @@ exports.wiredUssd = function(req, res) {
 	  message = 'Wrong input END';
 	}
 
-	res.contentType("text/plain");
+	res.contentType('text/plain');
 	res.send(message, 200);
 };
