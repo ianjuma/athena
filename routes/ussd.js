@@ -56,8 +56,16 @@ exports.wiredUssd = function(req, res) {
     }
 
 	else if (text === '3') {
-		message = 'END Your balance is 2,000 KES';
+		message = 'CON Enter device EMEI number';
 	}
+
+    else if (length === 2 && txt[0] === '3') {
+        message = 'CON Enter device ID';
+    }
+
+    else if (length === 3 && txt[0] === '3') {
+        message = 'END you have a valid device';
+    }
 
 	else if (text === '4') {
 	  message = 'END Mark device sold';
