@@ -55,10 +55,6 @@ exports.wiredUssd = function(req, res) {
         message = 'END Sales agent added';
     }
 
-	else if (text === '2*2') {
-		message += 'END lost found section';
-	}
-
 	else if (text === '3') {
 		message = 'END Your balance is 2,000 KES';
 	}
