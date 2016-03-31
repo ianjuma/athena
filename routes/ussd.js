@@ -11,7 +11,8 @@ exports.wiredUssd = function(req, res) {
 
   console.log(sessionId, serviceCode, phoneNumber, text);
 
-  text.split('*');
+  var length = text.split('*').length;
+  var menuLevel = 0;
 
 	if (text === '') {
 		message = 'CON Welcome to Wired Networks Ltd \n';
@@ -23,7 +24,18 @@ exports.wiredUssd = function(req, res) {
 
 	else if (text === '1') {
 		message = 'CON Enter device IMEI number';
+        menuLevel = 1;
 	}
+    else if (length === 2 && menuLevel === 1) {
+        message = 'CON Enter device color';
+    }
+    else if (length === 3 && menuLevel === 1) {
+        message = 'CON Enter device model';
+    }
+    else if (length === 4 && menuLevel === 1) {
+        // persist
+        message = 'END Device registered';
+    }
 
 	else if (text === '2') {
 		message = 'CON Enter 1 for recovery \n';
