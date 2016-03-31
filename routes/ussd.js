@@ -43,15 +43,15 @@ exports.wiredUssd = function(req, res) {
 		message = 'CON Enter agent name\n';
 	}
 
-	else if (length === '2' && txt[0] === '2') {
+	else if (length === 2 && txt[0] === '2') {
 	    message = 'CON Enter your name';
 	}
 
-    else if (length === '2' && txt[0] === '2') {
+    else if (length === 3 && txt[0] === '2') {
         message = 'CON ID number';
     }
 
-    else if (length === '2' && txt[0] === '2') {
+    else if (length === 4 && txt[0] === '2') {
         message = 'END Sales agent added';
     }
 
