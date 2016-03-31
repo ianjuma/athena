@@ -27,13 +27,14 @@ exports.wiredUssd = function(req, res) {
 		message = 'CON Enter device IMEI number';
         console.log(txt[0]);
 	}
-    else if (length === 2 && txt[0] === 1) {
+    else if (length === 2 && txt[0] === '1') {
         message = 'CON Enter device color';
+        console.log(txt[0]);
     }
-    else if (length === 3 && txt[0] === 1) {
+    else if (length === 3 && txt[0] === '1') {
         message = 'CON Enter device model';
     }
-    else if (length === 4 && txt[0] === 1) {
+    else if (length === 4 && txt[0] === '1') {
         // persist
         message = 'END Device registered';
     }
