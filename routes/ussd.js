@@ -47,29 +47,30 @@ exports.wiredUssd = function(req, res) {
         message += 'Yes/No';
     }
     else if (length === 7 && txt[0] === '1') {
-        // persist
+        // commit to db
         message = 'END Device registered';
+        console.log(text.split('*'));
     }
 
     // add sales person
 	else if (text === '2') {
         // check is user is agent
-		message = 'CON Enter agent name\n';
+		message = 'CON Enter sales agent name\n';
 	}
 	else if (length === 2 && txt[0] === '2') {
-	    message = 'CON Enter agent email';
+	    message = 'CON Enter sales agent email';
 	}
     else if (length === 3 && txt[0] === '2') {
-        message = 'CON Enter sales code';
+        message = 'CON Enter sales agent code';
     }
     else if (length === 4 && txt[0] === '2') {
         message = 'CON Enter agent location';
     }
     else if (length === 5 && txt[0] === '2') {
-        message = 'CON Enter name of purchase';
-    }
-    else if (length === 6 && txt[0] === '2') {
         message = 'END Sales agent added';
+        // commit to db
+        var elements = text.split('*');
+        console.log(elements);
     }
 
 
@@ -80,6 +81,7 @@ exports.wiredUssd = function(req, res) {
         message = 'CON Enter your ID number';
     }
     else if (length === 3 && txt[0] === '3') {
+        // check device authenticity
         message = 'END You have a genuine device';
     }
 
@@ -105,7 +107,7 @@ exports.wiredUssd = function(req, res) {
 
 	else {
 	  message = 'END Wrong input';
-      // reply menu
+      // reply with menu
 	}
 
 	res.contentType('text/plain');
