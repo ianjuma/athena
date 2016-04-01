@@ -61,10 +61,7 @@ exports.wiredUssd = function(req, res) {
           insurance_status: options[5],
           in_stock: options[6]
         }).then(function(device) {
-          console.log('device added');  
-        })
-        .on('error', function(err) {
-          console.log('Failed to add device');
+          console.log('device added', device);
         });
 
     }
