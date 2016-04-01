@@ -38,15 +38,15 @@ exports.wiredUssd = function(req, res) {
     }
     else if (length === 4 && txt[0] === '1') {
         message = 'CON Enter Warranty status\n';
-        message += 'Yes/No';
+        message += '1) Yes / 2) No';
     }
     else if (length === 5 && txt[0] === '1') {
         message = 'CON Enter Insurance status\n';
-        message += 'Yes/No';
+        message += '1). Yes / 2). No';
     }
     else if (length === 6 && txt[0] === '1') {
         message = 'CON Is device in stock\n';
-        message += 'Yes/No';
+        message += '1). Yes / 2). No';
     }
     else if (length === 7 && txt[0] === '1') {
         // commit to db
@@ -78,7 +78,7 @@ exports.wiredUssd = function(req, res) {
         message = 'CON Enter Agent sales code';
     }
     else if (length === 4 && txt[0] === '2') {
-        message = 'CON Enter agent location';
+        message = 'CON Enter agent location\n';
         message += 'eg. Kilimani';
     }
     else if (length === 5 && txt[0] === '2') {
