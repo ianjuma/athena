@@ -16,13 +16,13 @@ exports.wiredUssd = function(req, res) {
   var length = text.split('*').length;
   var txt = text.split('*');
 
-	if (text === '') {
-		message = 'CON Welcome to Wired Networks Ltd \n';
-		message += '1: Enter new device \n';
-		message += '2: Enter sales person\n';
-	    message += '3: Check status of mobile device\n';
-		message += '4: Mark device as sold';
-	}
+  if (text === '') {
+	message = 'CON Welcome to Wired Networks Ltd \n';
+	message += '1: Enter new device \n';
+	message += '2: Enter sales person\n';
+	message += '3: Check status of mobile device\n';
+	message += '4: Mark device as sold';
+  }
 
   // add device
   else if (text === '1') {
@@ -30,23 +30,23 @@ exports.wiredUssd = function(req, res) {
   	message = 'CON Enter device IMEI number';
   }
   else if (length === 2 && txt[0] === '1') {
-      message = 'CON Enter device color';
+    message = 'CON Enter device color';
   }
   else if (length === 3 && txt[0] === '1') {
-      message = 'CON Enter device model\n';
-      message += 'eg. Nokia 3310';
+    message = 'CON Enter device model\n';
+    message += 'eg. Nokia 3310';
   }
   else if (length === 4 && txt[0] === '1') {
-      message = 'CON Enter Warranty status\n';
-      message += '1) Yes / 2) No';
+    message = 'CON Enter Warranty status\n';
+    message += '1) Yes / 2) No';
   }
   else if (length === 5 && txt[0] === '1') {
-      message = 'CON Enter Insurance status\n';
-      message += '1). Yes / 2). No';
+    message = 'CON Enter Insurance status\n';
+    message += '1). Yes / 2). No';
   }
   else if (length === 6 && txt[0] === '1') {
-      message = 'CON Is device in stock\n';
-      message += '1). Yes / 2). No';
+    message = 'CON Is device in stock\n';
+    message += '1). Yes / 2). No';
   }
   else if (length === 7 && txt[0] === '1') {
     // commit to db
@@ -67,19 +67,19 @@ exports.wiredUssd = function(req, res) {
   }
 
   // add sales person
-	else if (text === '2') {
+  else if (text === '2') {
     // check is user is agent
-		message = 'CON Enter sales agent name\n';
-	}
-	else if (length === 2 && txt[0] === '2') {
-	    message = 'CON Enter sales agent email';
-	}
+	message = 'CON Enter sales agent name\n';
+  }
+  else if (length === 2 && txt[0] === '2') {
+	message = 'CON Enter sales agent email';
+  }
   else if (length === 3 && txt[0] === '2') {
-      message = 'CON Enter Agent sales code';
+    message = 'CON Enter Agent sales code';
   }
   else if (length === 4 && txt[0] === '2') {
-      message = 'CON Enter agent location\n';
-      message += 'eg. Kilimani';
+    message = 'CON Enter agent location\n';
+    message += 'eg. Kilimani';
   }
   else if (length === 5 && txt[0] === '2') {
     message = 'END Sales agent added';
@@ -97,9 +97,9 @@ exports.wiredUssd = function(req, res) {
   }
 
 
-	else if (text === '3') {
-		message = 'CON Enter device IMEI number';
-	}
+  else if (text === '3') {
+    message = 'CON Enter device IMEI number';
+  }
   else if (length === 2 && txt[0] === '3') {
     message = 'CON Enter your ID number';
   }
@@ -158,11 +158,11 @@ exports.wiredUssd = function(req, res) {
     });
   }
 
-	else {
-	  message = 'END Wrong input';
-      // reply with menu
-	}
+  else {
+	message = 'END Wrong input';
+    // reply with menu
+  }
 
-	res.contentType('text/plain');
-	res.send(message, 200);
+  res.contentType('text/plain');
+  res.send(message, 200);
 };
