@@ -75,16 +75,25 @@ exports.wiredUssd = function(req, res) {
 	    message = 'CON Enter sales agent email';
 	}
     else if (length === 3 && txt[0] === '2') {
-        message = 'CON Enter sales agent code';
+        message = 'CON Enter Agent sales code';
     }
     else if (length === 4 && txt[0] === '2') {
         message = 'CON Enter agent location';
+        message += 'eg. Kilimani';
     }
     else if (length === 5 && txt[0] === '2') {
         message = 'END Sales agent added';
-        // commit to db
-        var elements = text.split('*');
-        console.log(elements);
+        var options = text.split('*');
+
+        db.Agent.create({
+          name: options[1],
+          primary_email: options[2],
+          agent_sales_code: options[3],
+          location: options[4],
+          phone_number: phoneNumber
+        }).then(function(agent) {
+          console.log('agent person added', agent);
+        });
     }
 
 
