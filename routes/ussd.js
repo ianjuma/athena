@@ -1,5 +1,7 @@
 'use strict';
 
+var db = require('./../models');
+
 exports.wiredUssd = function(req, res) {
 
   var message = '';
@@ -49,7 +51,22 @@ exports.wiredUssd = function(req, res) {
     else if (length === 7 && txt[0] === '1') {
         // commit to db
         message = 'END Device registered';
-        console.log(text.split('*'));
+        var options = text.split('*');
+
+        db.Device.create({
+          imei: options[1],
+          color: options[2],
+          model: options[3],
+          warrant_status: options[4],
+          insurance_status: options[5],
+          in_stock: options[6]
+        }).then(function(device) {
+          console.log('device added');  
+        })
+        .on('error', function(err) {
+          console.log('Failed to add device');
+        });
+
     }
 
     // add sales person

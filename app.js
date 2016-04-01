@@ -24,12 +24,17 @@ app.use(logger('dev'));
 
 var port = process.env.PORT || 8000;
 
+var models = require('./models');
+
 // routes
 app.get('/', index.index);
 app.post('/receiveSms', sms.receiveSms);
 app.post('/wiredUssd', ussd.wiredUssd);
 app.post('/dlr', dlr.dlr);
 
-app.listen(port);
 
-console.log('Magic happens on port ' + port);
+models.sequelize.sync({logging: false}).then(function () {
+    var server = app.listen(port, function() {
+        console.log('Magic happens on port ' + server.address().port);
+    });
+});

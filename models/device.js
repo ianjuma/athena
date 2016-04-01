@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var Devices = sequelize.define('Devices', {
+  var Device = sequelize.define('Device', {
     model: {
       type: DataTypes.STRING,
       allowNull: false
@@ -27,5 +27,5 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
-  return Devices;
+  return Device;
 };

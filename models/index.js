@@ -3,7 +3,7 @@
 var fs        = require('fs');
 var path      = require('path');
 var Sequelize = require('sequelize');
-var config    = require(__dirname + './../config/options');
+var config    = require(__dirname + './../config/config');
 
 var sequelize = new Sequelize(config.mysql.db, config.mysql.user,
   config.mysql.pass, { host: config.mysql.host, dialect: 'mysql', autoIncrement: true });

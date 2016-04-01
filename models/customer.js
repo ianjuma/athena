@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var CustomerSales = sequelize.define('CustomerSales', {
+  var CustomerSale = sequelize.define('CustomerSale', {
     name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -23,5 +23,5 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
   });
-  return CustomerSales;
+  return CustomerSale;
 };
