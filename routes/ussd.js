@@ -34,7 +34,7 @@ exports.wiredUssd = function(req, res) {
     }
     else if (length === 3 && txt[0] === '1') {
         message = 'CON Enter device model\n';
-        message = 'eg. Nokia 3310';
+        message += 'eg. Nokia 3310';
     }
     else if (length === 4 && txt[0] === '1') {
         message = 'CON Enter Warranty status\n';
