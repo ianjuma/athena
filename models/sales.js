@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var Device = sequelize.define('Device', {
-    model: {
+  var Sale = sequelize.define('Sale', {
+    sales_code: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -10,26 +10,18 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       unique: false
     },
-    color: {
+    buyer_id: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    warrant_status: {
+    buyer_name: {
       type: DataTypes.BOOLEAN,
       allowNull: false
     },
-    insurance_status: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
-    },
-    status: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
-    },
-    in_stock: {
+    buyer_phone_number: {
       type: DataTypes.BOOLEAN,
       allowNull: false
     }
   });
-  return Device;
+  return Sale;
 };
