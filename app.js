@@ -22,7 +22,7 @@ app.use(logger('combined', { stream: accessLogStream,
 
 app.use(logger('dev'));
 
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 8001;
 
 var models = require('./models');
 
