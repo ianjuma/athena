@@ -1,27 +1,28 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var CustomerSales = sequelize.define('CustomerSales', {
+  var Agent = sequelize.define('Agent', {
     name: {
       type: DataTypes.STRING,
       allowNull: false
     },
+    agent_sales_code: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    location: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    primary_email: {
+      type: DataTypes.STRING,
+      unique: true
+    },
     phone_number: {
       type: DataTypes.STRING,
-      unique: false
-    },
-    sales_code: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    imei_number: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    id_number: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
+      unique: true
+    }
   });
-  return CustomerSales;
+  return Agent;
 };

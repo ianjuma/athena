@@ -1,31 +1,31 @@
 'use strict';
 
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'root'
-});
-
-var pool  = mysql.createPool({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'root'
-});
-
-var DEVICE_INSERT = 'INSERT INTO Devices (imei, model, color) VALUES(?, ?, ?)';
-
-exports.addDevice = function(imei, model, color) {
-    connection.query({
-      sql: DEVICE_INSERT,
-      timeout: 40000,
-      values: [imei, model, color]
-    }, function(error, result) {
-      if (error) {
-          console.log(error);
-      }
-
-      console.log('changed ' + result.changedRows + ' rows');
-
-    });
+module.exports = function(sequelize, DataTypes) {
+  var Devices = sequelize.define('Devices', {
+    model: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    imei: {
+      type: DataTypes.STRING,
+      unique: false
+    },
+    color: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    warrant_status: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    },
+    insurance_status: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    },
+    in_stock: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
+    }
+  });
+  return Devices;
 };
