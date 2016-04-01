@@ -135,6 +135,7 @@ exports.wiredUssd = function(req, res) {
   }
   else if (length === 6 && txt[0] === '4') {
     message = 'END Device sold';
+    var options = text.split('*');
 
     db.Sale.create({
       sales_code: options[1],
