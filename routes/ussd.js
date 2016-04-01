@@ -151,7 +151,7 @@ exports.wiredUssd = function(req, res) {
       where: { imei: options[1] }
     }).then(function(device) {
       device.update({
-        status: 0
+        status: '0'
       }).then(function(device) {
         console.log('device marked as sold', device);
       });
