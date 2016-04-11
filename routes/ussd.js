@@ -16,6 +16,7 @@ exports.wiredUssd = function(req, res) {
   var length = text.split('*').length;
   var txt = text.split('*');
 
+  // look up - is customer? or Agent - offer 2 parts, agent -?
   if (text === '') {
 	message = 'CON Welcome to Wired Networks Ltd \n';
 	message += '1: Enter new device \n';
