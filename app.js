@@ -6,7 +6,9 @@ var app        = express();
 var bodyParser = require('body-parser');
 var index      = require('./routes/index');
 var sms        = require('./routes/sms');
+var voice      = require('./routes/voice')
 var ussd       = require('./routes/ussd');
+var payment    = require('./routes/payments');
 var dlr        = require('./routes/dlrs');
 var fs         = require('fs');
 var logger     = require('morgan');
@@ -28,9 +30,11 @@ var models = require('./models');
 
 // routes
 app.get('/', index.index);
-app.post('/receiveSms', sms.receiveSms);
+app.post('/incomingSms', sms.receiveSms);
 app.post('/wiredUssd', ussd.wiredUssd);
 app.post('/dlr', dlr.dlr);
+app.post('/voice', voice.voice);
+app.post('/ipn', payment.ipn);
 
 
 models.sequelize.sync({logging: false}).then(function () {
