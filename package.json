@@ -1,9 +1,9 @@
 {
-  "name": "json-lint-express",
+  "name": "athena",
   "preferGlobal": true,
   "version": "0.0.1",
-  "author": "Cody Bonney <me@codybonney.com>",
-  "description": "a simple web server that lints json strings",
+  "author": "Ian Juma <wjuma@africastalking.com>",
+  "description": "AfricasTalking API demo app",
   "license": "MIT",
   "engines": {
     "node": ">=0.10"
@@ -17,6 +17,7 @@
     "express": "~4.0.0",
     "forever": "^0.15.1",
     "json-lint": "~0.1.0",
+    "redis": "*",
     "morgan": "^1.7.0",
     "houndify": "*",
     "mysql": "^2.10.2",

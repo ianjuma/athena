@@ -2,6 +2,8 @@
 
 var options = require('../config/config');
 var AfricasTalking = require('africastalking')(options.AT);
+var redis = require("redis");
+var r = redis.createClient();
 
 var Houndify = require('houndify').Houndify;
 
@@ -32,15 +34,26 @@ exports.receiveSms = function(req, res) {
     var command = resp[0].raw.CommandKind;
     var toSend  = resp[0].raw.SpokenResponse;
 
-    console.log(command, toSend);
+    r.set(from_, toSend, redis.print);
 
     var opts = { 'to': from_, 'message': command + ' -> ' + toSend };
 
     sms.send(opts)
+      .then(function(s) {
+        console.log(s);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    voice.call({
+      callFrom: '+254711082306',
+      callTo: from_
+    })
     .then(function(s) {
       console.log(s);
     })
-    .catch(function (error) {
+    .catch(function(error) {
       console.log(error);
     });
 
