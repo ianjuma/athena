@@ -3,6 +3,16 @@
 var options = require('../config/config');
 var AfricasTalking = require('africastalking')(options.AT);
 
+var Houndify = require('houndify').Houndify;
+
+var client = new Houndify({
+  auth: {
+    clientId: 'KS3xVzZ3e1LYKPYpje8BVA==',
+      clientKey: 'unUgmQ4ZFvjk4LeJVs5oa16H7V-O4DTbDpJ1-KCSnKpVPu6lP59Y4gyTufdn7_EkGHj8EZGzMIAcLd4F8l-GdA==',
+      userId: 'ijuma@africastalking.com'
+  }
+});
+
 
 exports.receiveSms = function(req, res) {
 
@@ -16,41 +26,26 @@ exports.receiveSms = function(req, res) {
 
   var sms     = AfricasTalking.SMS;
   var voice   = AfricasTalking.VOICE;
-  var payment = AfricasTalking.PAYMENT;
 
-  /*
-  voice.call({
-    callFrom: '+254711082306',
-    callTo: from_ 
-  }).then(function(s) {
-    console.log(s);
-  }).catch(function(error){
-    console.log(error);
-  });
-  */
-  payment.checkOut({
-    phoneNumber  : from_,
-    productName  : 'PaymentAiri',
-    currencyCode : 'KES',
-    metadata     : { id: 'A_35435454634654' },
-    amount       : 2000
-  }).then(function(s) {
-    console.log(s);
-  })
-  .catch(function(error){
-    console.log(error);
+  client.query(message, function(error, resp) {
+
+    var command = resp[0].raw.CommandKind;
+    var toSend  = resp[0].raw.SpokenResponse;
+
+    console.log(command, toSend);
+
+    var opts = { 'to': from_, 'message': command + ' -> ' + toSend };
+
+    sms.send(opts)
+    .then(function(s) {
+      console.log(s);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
   });
 
-  var opts = { to: from_, message: 'Hi, received - ' + message };
-/*
-  sms.send(opts)
-	    .then(function(s) {
-	    	console.log(s);
-	    })
-	    .catch(function (error) {
-	    	console.log(error);
-	    });
-*/
   res.setHeader('Content-Type', 'application/json');
   res.send( { 'Response': 'OK 200' } );
-};
+}

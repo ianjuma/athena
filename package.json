@@ -18,6 +18,7 @@
     "forever": "^0.15.1",
     "json-lint": "~0.1.0",
     "morgan": "^1.7.0",
+    "houndify": "*",
     "mysql": "^2.10.2",
     "request": "^2.70.0",
     "sequelize": "^3.20.0",
