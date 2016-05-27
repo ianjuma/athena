@@ -37,7 +37,7 @@ exports.receiveSms = function(req, res) {
     r.set(from_, toSend, redis.print);
 
     var opts = { 'to': from_, 'message': command + ' -> ' + toSend };
-
+/*
     sms.send(opts)
       .then(function(s) {
         console.log(s);
@@ -45,7 +45,7 @@ exports.receiveSms = function(req, res) {
       .catch(function (error) {
         console.log(error);
       });
-
+*/
     voice.call({
       callFrom: '+254711082306',
       callTo: from_
